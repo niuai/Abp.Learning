@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Jiabin.Assets;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 
 namespace Jiabin.EntityFrameworkCore
@@ -11,12 +12,11 @@ namespace Jiabin.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(JiabinConsts.DbTablePrefix + "YourEntities", JiabinConsts.DbSchema);
-
-            //    //...
-            //});
+            builder.Entity<Asset>(b =>
+            {
+                b.ToTable(JiabinConsts.DbTablePrefix + "Assets", JiabinConsts.DbSchema);
+                b.Ignore(p => p.ExtraProperties);
+            });
         }
     }
 }

@@ -4,15 +4,17 @@ using Jiabin.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Jiabin.Migrations
 {
     [DbContext(typeof(JiabinMigrationsDbContext))]
-    partial class JiabinMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200606075358_Add_Entity_Asset")]
+    partial class Add_Entity_Asset
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
