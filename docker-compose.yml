@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  jiabin.web:
+    image: ${DOCKER_REGISTRY-}jiabinweb
+    build:
+      context: .
+      dockerfile: src/Jiabin.Web/Dockerfile
