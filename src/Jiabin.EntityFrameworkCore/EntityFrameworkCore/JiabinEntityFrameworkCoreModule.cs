@@ -1,4 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System;
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -45,7 +49,12 @@ namespace Jiabin.EntityFrameworkCore
             {
                 /* The main point to change your DBMS.
                  * See also JiabinMigrationsDbContextFactory for EF Core tooling. */
-                options.UseSqlServer();
+                options.Configure(abpDbContextConfigurationContext =>
+                {
+                    abpDbContextConfigurationContext.DbContextOptions
+                        .UseMySql(context.Services.GetConfiguration().GetConnectionString("Default"), mySqlOptions =>
+                            mySqlOptions.ServerVersion(new Version(5, 6, 0), ServerType.MySql));
+                });
             });
         }
     }

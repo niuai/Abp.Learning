@@ -1,7 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace Jiabin.EntityFrameworkCore
 {
@@ -16,7 +18,8 @@ namespace Jiabin.EntityFrameworkCore
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<JiabinMigrationsDbContext>()
-                .UseSqlServer(configuration.GetConnectionString("Default"));
+                .UseMySql(configuration.GetConnectionString("Default"), mySqlOptions =>
+                            mySqlOptions.ServerVersion(new Version(5, 6, 0), ServerType.MySql));
 
             return new JiabinMigrationsDbContext(builder.Options);
         }

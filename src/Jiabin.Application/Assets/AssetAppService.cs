@@ -1,4 +1,5 @@
 ﻿using Jiabin.Assets.Dtos;
+using Jiabin.Orders;
 using System;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
@@ -9,11 +10,14 @@ namespace Jiabin.Assets
         CrudAppService<Asset, AssetDto, Guid, PagedAndSortedResultRequestDto, CreateUpdateAssetDto, CreateUpdateAssetDto>,
         IAssetAppService
     {
-        private readonly IAssetRepository _repository;
+        private readonly IAssetRepository _assetRepo;
 
-        public AssetAppService(IAssetRepository repository) : base(repository)
+        private readonly IOrderRepository _orderRepo;
+
+        public AssetAppService(IAssetRepository assetRepo, IOrderRepository orderRepo) : base(assetRepo)
         {
-            _repository = repository;
+            _assetRepo = assetRepo;
+            _orderRepo = orderRepo;
         }
     }
 }

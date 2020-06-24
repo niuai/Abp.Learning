@@ -1,4 +1,5 @@
 ﻿using Jiabin.Assets;
+using Jiabin.Orders;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
 
@@ -17,6 +18,18 @@ namespace Jiabin.EntityFrameworkCore
                 b.ToTable(JiabinConsts.DbTablePrefix + "Assets", JiabinConsts.DbSchema);
                 b.Ignore(p => p.ExtraProperties);
             });
+
+            //builder.Entity<AssetRecord>(b =>
+            //{
+            //    b.ToTable(JiabinConsts.DbTablePrefix + "AssetRecords", JiabinConsts.DbSchema);
+            //    b.Ignore(p => p.ExtraProperties);
+            //});
+
+            //builder.Entity<Order>(b =>
+            //{
+            //    b.ToTable(JiabinConsts.DbTablePrefix + "Orders", JiabinConsts.DbSchema);
+            //    b.Ignore(p => p.ExtraProperties);
+            //});
         }
     }
 }

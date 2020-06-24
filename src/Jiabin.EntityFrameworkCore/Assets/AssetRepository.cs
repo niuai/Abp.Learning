@@ -5,8 +5,8 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Jiabin.Assets
 {
-    public class AssetRepository : EfCoreRepository<JiabinDbContext, Asset, Guid>, IAssetRepository
+    public class AssetRepository : EfCoreRepository<AssetContext, Asset, Guid>, IAssetRepository
     {
-        public AssetRepository(IDbContextProvider<JiabinDbContext> dbContextProvider) : base(dbContextProvider) { }
+        public AssetRepository(IDbContextProvider<AssetContext> dbContextProvider) : base(dbContextProvider) { }
     }
 }
