@@ -36,6 +36,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using AspNetCoreRateLimit;
+using Microsoft.AspNetCore.Http;
 
 namespace Jiabin.Web
 {
@@ -75,6 +77,7 @@ namespace Jiabin.Web
 
             context.Services.AddMemoryCache();
 
+            ConfigureRateLimit(context, configuration);
             ConfigureUrls(configuration);
             ConfigureAuthentication(context, configuration);
             ConfigureAutoMapper();
@@ -83,6 +86,19 @@ namespace Jiabin.Web
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
+        }
+
+        private void ConfigureRateLimit(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            // .net core rate limit: https://github.com/stefanprodan/AspNetCoreRateLimit/wiki/IpRateLimitMiddleware#setup
+
+            Configure<IpRateLimitOptions>(configuration.GetSection("IpRateLimiting"));
+            Configure<IpRateLimitPolicies>(configuration.GetSection("IpRateLimitPolicies"));
+
+            context.Services.AddSingleton<IIpPolicyStore, MemoryCacheIpPolicyStore>();
+            context.Services.AddSingleton<IRateLimitCounterStore, MemoryCacheRateLimitCounterStore>();
+            context.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            context.Services.AddSingleton<IRateLimitConfiguration, RateLimitConfiguration>();
         }
 
         private void ConfigureUrls(IConfiguration configuration)
@@ -181,6 +197,8 @@ namespace Jiabin.Web
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
+
+            app.UseIpRateLimiting();
 
             if (env.IsDevelopment())
             {

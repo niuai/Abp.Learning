@@ -7,10 +7,9 @@ namespace Jiabin.Controllers
 {
     public class VerificationCodeController : JiabinController
     {
-        private static readonly string _verificationCodeCacheFormat = "vcode_cache_{0}";
-
+        private readonly string _verificationCodeCacheFormat = "vcode_cache_{0}";
         private readonly IVerificationCodeAppService _verificationCodeAppService;
-        private IMemoryCache _memoryCache;
+        private readonly IMemoryCache _memoryCache;
 
         public VerificationCodeController(IVerificationCodeAppService verificationCodeAppService, IMemoryCache memoryCache)
         {
@@ -22,7 +21,6 @@ namespace Jiabin.Controllers
         public IActionResult ValidateCode()
         {
             var imgBytes = _verificationCodeAppService.Create(out string code);
-            code = code.ToLower(); // 验证码不分大小写
             var token = Guid.NewGuid().ToString();
             var cacheKey = string.Format(_verificationCodeCacheFormat, token);
 
@@ -36,11 +34,11 @@ namespace Jiabin.Controllers
         [Route("Verify")]
         public bool VerifyUserInputCode(string userToken, string userVerCode)
         {
-            var cacheKey = string.Format(_verificationCodeCacheFormat, userToken.ToString());
+            var cacheKey = string.Format(_verificationCodeCacheFormat, userToken);
 
             if (!_memoryCache.TryGetValue(cacheKey, out string vCode))
-                return false;
-            if (vCode.ToLower() != userVerCode.ToLower())
+                throw new BizException("验证码已失效，请重新输入新的验证码");
+            if (vCode.ToLower() != userVerCode.ToLower())   // 验证码不分大小写
                 return false;
 
             _memoryCache.Remove(cacheKey);

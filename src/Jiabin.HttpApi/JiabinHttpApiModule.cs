@@ -17,6 +17,9 @@ namespace Jiabin
         )]
     public class JiabinHttpApiModule : AbpModule
     {
-        
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+
+        }
     }
 }
