@@ -12,12 +12,6 @@ namespace Jiabin.Orders
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<Order>(b =>
-            {
-                b.ToTable(JiabinConsts.DbTablePrefix + "Orders", JiabinConsts.DbSchema);
-                b.Ignore(p => p.ExtraProperties);
-            });
         }
     }
 }

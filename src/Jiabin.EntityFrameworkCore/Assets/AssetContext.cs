@@ -5,6 +5,8 @@ namespace Jiabin.Assets
 {
     public class AssetContext : JiabinDbContext
     {
+        public DbSet<Asset> Assets { get; set; }
+
         public DbSet<AssetRecord> AssetRecords { get; set; }
 
         public AssetContext(DbContextOptions<JiabinDbContext> options) : base(options) { }
@@ -12,12 +14,6 @@ namespace Jiabin.Assets
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<AssetRecord>(b =>
-            {
-                b.ToTable(JiabinConsts.DbTablePrefix + "AssetRecords", JiabinConsts.DbSchema);
-                b.Ignore(p => p.ExtraProperties);
-            });
         }
     }
 }

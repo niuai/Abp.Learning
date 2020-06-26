@@ -19,17 +19,17 @@ namespace Jiabin.EntityFrameworkCore
                 b.Ignore(p => p.ExtraProperties);
             });
 
-            //builder.Entity<AssetRecord>(b =>
-            //{
-            //    b.ToTable(JiabinConsts.DbTablePrefix + "AssetRecords", JiabinConsts.DbSchema);
-            //    b.Ignore(p => p.ExtraProperties);
-            //});
+            builder.Entity<AssetRecord>(b =>
+            {
+                b.ToTable(JiabinConsts.DbTablePrefix + "AssetRecords", JiabinConsts.DbSchema);
+                b.Ignore(p => p.ExtraProperties);
+            });
 
-            //builder.Entity<Order>(b =>
-            //{
-            //    b.ToTable(JiabinConsts.DbTablePrefix + "Orders", JiabinConsts.DbSchema);
-            //    b.Ignore(p => p.ExtraProperties);
-            //});
+            builder.Entity<Order>(b =>
+            {
+                b.ToTable(JiabinConsts.DbTablePrefix + "Orders", JiabinConsts.DbSchema);
+                b.Ignore(p => p.ExtraProperties);
+            });
         }
     }
 }

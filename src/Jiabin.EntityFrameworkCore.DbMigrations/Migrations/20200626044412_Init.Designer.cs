@@ -10,7 +10,7 @@ using Volo.Abp.EntityFrameworkCore;
 namespace Jiabin.Migrations
 {
     [DbContext(typeof(JiabinMigrationsDbContext))]
-    [Migration("20200624132930_Init")]
+    [Migration("20200626044412_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
