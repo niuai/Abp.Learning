@@ -11,5 +11,9 @@ namespace Jiabin.VerificationCode
         /// <param name="length">生成位数（默认4位）</param>
         /// <returns>图像的字节数组</returns>
         byte[] Create(out string code, int length = 4);
+
+        byte[] Create2(out string code, int length = 4);
+
+        byte[] Create3(out string code, int length = 4);
     }
 }

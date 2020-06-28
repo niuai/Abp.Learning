@@ -1,5 +1,8 @@
 ﻿using SkiaSharp;
 using System;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using Volo.Abp.Application.Services;
@@ -50,6 +53,108 @@ namespace Jiabin.VerificationCode
             using var p = img.Encode();
 
             return p.ToArray();
+        }
+
+        public byte[] Create2(out string validateNum, int length = 4)
+        {
+            byte[] result;
+            validateNum = RndomStr(length);
+            // 生成BitMap图像
+            var image = new Bitmap(validateNum.Length * 12 + 12, 22);
+            var g = Graphics.FromImage(image);
+
+            try
+            {
+                // 生成随机生成器
+                var random = new Random();
+                // 清空图片背景
+                g.Clear(Color.White);
+                // 画图片的背景噪音线
+                for (int i = 0; i < 25; i++)
+                {
+                    int x1 = random.Next(image.Width);
+                    int x2 = random.Next(image.Width);
+                    int y1 = random.Next(image.Height);
+                    int y2 = random.Next(image.Height);
+                    g.DrawLine(new Pen(Color.Silver), x1, x2, y1, y2);
+                }
+                var font = new Font("Arial", 12, (FontStyle.Bold | FontStyle.Italic));
+                var brush = new LinearGradientBrush(new Rectangle(0, 0, image.Width, image.Height), Color.Blue, Color.DarkRed, 1.2f, true);
+                g.DrawString(validateNum, font, brush, 2, 2);
+                // 画图片的前景噪音点
+                for (int i = 0; i < 100; i++)
+                {
+                    int x = random.Next(image.Width);
+                    int y = random.Next(image.Height);
+                    image.SetPixel(x, y, Color.FromArgb(random.Next()));
+
+                }
+                // 画图片的边框线
+                g.DrawRectangle(new Pen(Color.Silver), 0, 0, image.Width - 1, image.Height - 1);
+                var ms = new MemoryStream();
+                // 将图像保存到指定流
+                image.Save(ms, ImageFormat.Bmp);
+                result = ms.GetBuffer();
+                ms.Close();
+            }
+            finally
+            {
+                g.Dispose();
+                image.Dispose();
+            }
+
+            return result;
+        }
+
+        public byte[] Create3(out string chkCode, int length = 4)
+        {
+            var codeW = 80;
+            var codeH = 30;
+            var fontSize = 16;
+            chkCode = RndomStr(4);
+            // 颜色列表，用于验证码、噪线、噪点 
+            var color = new[] { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
+            // 字体列表，用于验证码 
+            var font = new[] { "Times New Roman" };
+            var rnd = new Random();
+            // 创建画布
+            var bmp = new Bitmap(codeW, codeH);
+            var g = Graphics.FromImage(bmp);
+            g.Clear(Color.White);
+            // 画噪线 
+            for (int i = 0; i < 3; i++)
+            {
+                var x1 = rnd.Next(codeW);
+                var y1 = rnd.Next(codeH);
+                var x2 = rnd.Next(codeW);
+                var y2 = rnd.Next(codeH);
+                var clr = color[rnd.Next(color.Length)];
+                g.DrawLine(new Pen(clr), x1, y1, x2, y2);
+            }
+            // 画验证码字符串 
+            for (int i = 0; i < chkCode.Length; i++)
+            {
+                var fnt = font[rnd.Next(font.Length)];
+                var ft = new Font(fnt, fontSize);
+                var clr = color[rnd.Next(color.Length)];
+                g.DrawString(chkCode[i].ToString(), ft, new SolidBrush(clr), (float)i * 18, 0);
+            }
+            // 将验证码图片写入内存流，并将其以 "image/Png" 格式输出 
+            var ms = new MemoryStream();
+            try
+            {
+                bmp.Save(ms, ImageFormat.Png);
+                return ms.ToArray();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+            finally
+            {
+                g.Dispose();
+                bmp.Dispose();
+            }
         }
 
         /// <summary>

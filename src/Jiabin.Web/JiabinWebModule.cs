@@ -81,7 +81,7 @@ namespace Jiabin.Web
             ConfigureUrls(configuration);
             ConfigureAuthentication(context, configuration);
             ConfigureAutoMapper();
-            ConfigureVirtualFileSystem(hostingEnvironment);
+            //ConfigureVirtualFileSystem(hostingEnvironment);
             ConfigureLocalizationServices();
             ConfigureNavigationServices();
             ConfigureAutoApiControllers();
@@ -210,7 +210,7 @@ namespace Jiabin.Web
             }
 
             app.UseCorrelationId();
-            app.UseVirtualFiles();
+            //app.UseVirtualFiles();
             app.UseRouting();
             app.UseAuthentication();
             app.UseJwtTokenMiddleware();

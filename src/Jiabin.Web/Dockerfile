@@ -1,7 +1,16 @@
 #See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim AS base
+#RUN apt-get update && apt-get install -y libgdiplus
 WORKDIR /app
+
+#COPY ["src/Jiabin.Web/libgdiplus0-6.0.4.tar.gz", "./"]
+#RUN tar -zxvf ./libgdiplus0-6.0.4.tar.gz
+#RUN cd ./libgdiplus-6.0.4
+##RUN ./configure --prefix=/usr
+##Ö´ÐÐ°²×° 
+#RUN make && make install
+
 EXPOSE 80
 EXPOSE 443
 
@@ -24,6 +33,7 @@ FROM build AS publish
 RUN dotnet publish "Jiabin.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
+
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Jiabin.Web.dll"]
