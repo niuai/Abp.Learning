@@ -20,7 +20,7 @@ namespace Jiabin.Controllers
         [HttpGet]
         public IActionResult ValidateCode()
         {
-            var imgBytes = _verificationCodeAppService.Create3(out string code);
+            var imgBytes = _verificationCodeAppService.Create2(out string code);
             var token = Guid.NewGuid().ToString();
             var cacheKey = string.Format(_verificationCodeCacheFormat, token);
 

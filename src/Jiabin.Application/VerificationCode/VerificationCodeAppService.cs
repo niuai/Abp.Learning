@@ -1,7 +1,6 @@
 ﻿using SkiaSharp;
 using System;
 using System.Drawing;
-using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -28,7 +27,7 @@ namespace Jiabin.VerificationCode
             {
                 sKPaint.TextSize = 16; // 字体大小
                 sKPaint.IsAntialias = true; // 开启抗锯齿
-                sKPaint.Typeface = SKTypeface.FromFamilyName("微软雅黑", SKFontStyle.Bold); // 字体
+                sKPaint.Typeface = SKTypeface.FromFamilyName(SKTypeface.Default.FamilyName, SKFontStyle.Bold); // 字体
 
                 var size = new SKRect();
                 sKPaint.MeasureText(codeChar[0].ToString(), ref size); // 计算文字宽度以及高度
@@ -55,59 +54,13 @@ namespace Jiabin.VerificationCode
             return p.ToArray();
         }
 
-        public byte[] Create2(out string validateNum, int length = 4)
+        /// <inheritdoc />
+        public byte[] Create2(out string chkCode, int length = 4)
         {
-            byte[] result;
-            validateNum = RndomStr(length);
-            // 生成BitMap图像
-            var image = new Bitmap(validateNum.Length * 12 + 12, 22);
-            var g = Graphics.FromImage(image);
-
-            try
-            {
-                // 生成随机生成器
-                var random = new Random();
-                // 清空图片背景
-                g.Clear(Color.White);
-                // 画图片的背景噪音线
-                for (int i = 0; i < 25; i++)
-                {
-                    int x1 = random.Next(image.Width);
-                    int x2 = random.Next(image.Width);
-                    int y1 = random.Next(image.Height);
-                    int y2 = random.Next(image.Height);
-                    g.DrawLine(new Pen(Color.Silver), x1, x2, y1, y2);
-                }
-                var font = new Font("Arial", 12, (FontStyle.Bold | FontStyle.Italic));
-                var brush = new LinearGradientBrush(new Rectangle(0, 0, image.Width, image.Height), Color.Blue, Color.DarkRed, 1.2f, true);
-                g.DrawString(validateNum, font, brush, 2, 2);
-                // 画图片的前景噪音点
-                for (int i = 0; i < 100; i++)
-                {
-                    int x = random.Next(image.Width);
-                    int y = random.Next(image.Height);
-                    image.SetPixel(x, y, Color.FromArgb(random.Next()));
-
-                }
-                // 画图片的边框线
-                g.DrawRectangle(new Pen(Color.Silver), 0, 0, image.Width - 1, image.Height - 1);
-                var ms = new MemoryStream();
-                // 将图像保存到指定流
-                image.Save(ms, ImageFormat.Bmp);
-                result = ms.GetBuffer();
-                ms.Close();
-            }
-            finally
-            {
-                g.Dispose();
-                image.Dispose();
-            }
-
-            return result;
-        }
-
-        public byte[] Create3(out string chkCode, int length = 4)
-        {
+            /*
+             ZKWeb 绘图
+             参考：.NET Core 图片操作在 Linux/Docker 下的坑（https://www.cnblogs.com/stulzq/p/10172550.html）
+            */
             var codeW = 80;
             var codeH = 30;
             var fontSize = 16;

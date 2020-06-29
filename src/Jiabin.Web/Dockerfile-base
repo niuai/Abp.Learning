@@ -1,0 +1,5 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-buster-slim
+
+RUN apt-get update
+RUN apt-get install libgdiplus -y
+RUN ln -s /usr/lib/libgdiplus.so /usr/lib/gdiplus.dll
