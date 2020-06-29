@@ -26,22 +26,22 @@ namespace Jiabin.Controllers
 
             _memoryCache.Set(cacheKey, code, new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromMinutes(10)));
 
-            Response.Cookies.Append("validatecode", token);
+            Response.Cookies.Append("validateToken", token);
             return File(imgBytes, @"image/png");
         }
 
         [HttpPost]
         [Route("Verify")]
-        public bool VerifyUserInputCode(string userToken, string userVerCode)
+        public bool VerifyUserInputCode(string userVerCode)
         {
-            var cacheKey = string.Format(_verificationCodeCacheFormat, userToken);
+            Request.Cookies.TryGetValue("validateToken", out string token);
+
+            var cacheKey = string.Format(_verificationCodeCacheFormat, token);
 
             if (!_memoryCache.TryGetValue(cacheKey, out string vCode))
-                throw new BizException("验证码已失效，请重新输入新的验证码");
+                throw new BizException("验证码已失效，请重新获取验证码");
             if (vCode.ToLower() != userVerCode.ToLower())   // 验证码不分大小写
                 return false;
-
-            _memoryCache.Remove(cacheKey);
 
             return true;
         }
