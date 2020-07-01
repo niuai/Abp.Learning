@@ -1,9 +1,7 @@
 ﻿@page
 @using Microsoft.AspNetCore.Mvc.Localization
-@using Jiabin.Localization
 @using Volo.Abp.Users
 @model Jiabin.Web.Pages.IndexModel
-@inject IHtmlLocalizer<JiabinResource> L
 @inject ICurrentUser CurrentUser
 @section styles {
     <abp-style-bundle>
@@ -16,16 +14,16 @@
     </abp-script-bundle>
 }
 <div class="jumbotron text-center">
-    <h1>@L["Welcome"]</h1>
+    <h1>Welcome"</h1>
     <div class="row">
         <div class="col-md-6 mx-auto">
-            <p>@L["LongWelcomeMessage"]</p>
+            <p>LongWelcomeMessage</p>
             <hr class="my-4"/>
         </div>
     </div>
     <a href="https://abp.io?ref=tmpl" target="_blank" class="btn btn-primary px-4">abp.io</a>
     @if (!CurrentUser.IsAuthenticated)
     {
-        <a abp-button="Primary" href="~/Account/Login" class="px-4"><i class="fa fa-sign-in"></i> @L["Login"]</a>
+        <a abp-button="Primary" href="~/Account/Login" class="px-4"><i class="fa fa-sign-in"></i> Login</a>
     }
 </div>

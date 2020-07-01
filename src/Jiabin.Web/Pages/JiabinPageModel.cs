@@ -1,5 +1,4 @@
-﻿using Jiabin.Localization;
-using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
+﻿using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 
 namespace Jiabin.Web.Pages
 {
@@ -9,7 +8,7 @@ namespace Jiabin.Web.Pages
     {
         protected JiabinPageModel()
         {
-            LocalizationResourceType = typeof(JiabinResource);
+            //LocalizationResourceType = typeof(JiabinResource);
         }
     }
 }

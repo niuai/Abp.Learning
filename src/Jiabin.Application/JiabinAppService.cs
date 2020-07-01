@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Jiabin.Localization;
-using Volo.Abp.Application.Services;
+﻿using Volo.Abp.Application.Services;
 
 namespace Jiabin
 {
@@ -12,7 +8,7 @@ namespace Jiabin
     {
         protected JiabinAppService()
         {
-            LocalizationResource = typeof(JiabinResource);
+            //LocalizationResource = typeof(JiabinResource);
         }
     }
 }

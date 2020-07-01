@@ -1,5 +1,4 @@
 using Jiabin.EntityFrameworkCore;
-using Jiabin.Localization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +10,6 @@ using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 using System;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
-using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
@@ -31,17 +29,7 @@ namespace Jiabin.Web
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.PreConfigure<AbpMvcDataAnnotationsLocalizationOptions>(options =>
-            {
-                options.AddAssemblyResource(
-                    typeof(JiabinResource),
-                    typeof(JiabinDomainModule).Assembly,
-                    typeof(JiabinDomainSharedModule).Assembly,
-                    typeof(JiabinApplicationModule).Assembly,
-                    typeof(JiabinApplicationContractsModule).Assembly,
-                    typeof(JiabinWebModule).Assembly
-                );
-            });
+            
         }
 
         public override void ConfigureServices(ServiceConfigurationContext context)

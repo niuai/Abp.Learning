@@ -1,5 +1,4 @@
-﻿using Jiabin.Localization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc;
 
 namespace Jiabin.Controllers
@@ -12,7 +11,7 @@ namespace Jiabin.Controllers
     {
         protected JiabinController()
         {
-            LocalizationResource = typeof(JiabinResource);
+            //LocalizationResource = typeof(JiabinResource);
         }
     }
 }

@@ -1,9 +1,4 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Localization;
-using Jiabin.Localization;
-using Jiabin.MultiTenancy;
-using Volo.Abp.TenantManagement.Web.Navigation;
 using Volo.Abp.UI.Navigation;
 
 namespace Jiabin.Web.Menus
