@@ -1,4 +1,5 @@
 ﻿using Jiabin.Assets;
+using System;
 using System.Linq;
 using Volo.Abp.Application.Services;
 
@@ -20,6 +21,13 @@ namespace Jiabin.Orders
         {
             var t1 = _assetRepo.ToList();
             var t2 = _orderRepo.ToList();
+
+            _assetRepo.InsertAsync(new Asset
+            {
+                Name = $"niuai-{DateTime.Now.Ticks}",
+                Description = "hello",
+                FileBytes = "good"
+            });
 
             return "Hello World!";
         }
