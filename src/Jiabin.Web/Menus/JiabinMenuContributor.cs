@@ -20,15 +20,15 @@ namespace Jiabin.Web.Menus
 
         private async Task ConfigureMainMenuAsync(MenuConfigurationContext context)
         {
-            if (!MultiTenancyConsts.IsEnabled)
-            {
-                var administration = context.Menu.GetAdministration();
-                administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
-            }
+            //if (!MultiTenancyConsts.IsEnabled)
+            //{
+            //    var administration = context.Menu.GetAdministration();
+            //    administration.TryRemoveMenuItem(TenantManagementMenuNames.GroupName);
+            //}
 
-            var l = context.GetLocalizer<JiabinResource>();
+            //var l = context.GetLocalizer<JiabinResource>();
 
-            context.Menu.Items.Insert(0, new ApplicationMenuItem("Jiabin.Home", l["Menu:Home"], "~/"));
+            //context.Menu.Items.Insert(0, new ApplicationMenuItem("Jiabin.Home", l["Menu:Home"], "~/"));
         }
     }
 }

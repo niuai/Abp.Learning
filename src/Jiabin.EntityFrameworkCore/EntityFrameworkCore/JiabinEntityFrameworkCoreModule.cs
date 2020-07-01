@@ -21,20 +21,7 @@ namespace Jiabin.EntityFrameworkCore
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-            context.Services.AddAbpDbContext<JiabinDbContext>(options =>
-            {
-                options.AddDefaultRepositories(includeAllEntities: true);
-            });
-
-            Configure<AbpDbContextOptions>(options =>
-            {
-                options.Configure(abpDbContextConfigurationContext =>
-                {
-                    abpDbContextConfigurationContext.DbContextOptions
-                        .UseMySql(context.Services.GetConfiguration().GetConnectionString("Default"), mySqlOptions =>
-                            mySqlOptions.ServerVersion(new Version(5, 6, 0), ServerType.MySql));
-                });
-            });
+            
         }
     }
 }

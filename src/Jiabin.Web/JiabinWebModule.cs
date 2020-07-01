@@ -2,15 +2,20 @@ using Jiabin.EntityFrameworkCore;
 using Jiabin.Localization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
+using System;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
 namespace Jiabin.Web
@@ -41,9 +46,28 @@ namespace Jiabin.Web
 
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            ConfigureDatabase(context);
             ConfigureAutoMapper();
             ConfigureAutoApiControllers();
             ConfigureSwaggerServices(context.Services);
+        }
+
+        private void ConfigureDatabase(ServiceConfigurationContext context)
+        {
+            context.Services.AddAbpDbContext<JiabinDbContext>(options =>
+            {
+                options.AddDefaultRepositories(includeAllEntities: true);
+            });
+
+            Configure<AbpDbContextOptions>(options =>
+            {
+                options.Configure(abpDbContextConfigurationContext =>
+                {
+                    abpDbContextConfigurationContext.DbContextOptions
+                        .UseMySql(context.Services.GetConfiguration().GetConnectionString("Default"), mySqlOptions =>
+                            mySqlOptions.ServerVersion(new Version(5, 6, 0), ServerType.MySql));
+                });
+            });
         }
 
         private void ConfigureAutoMapper()
