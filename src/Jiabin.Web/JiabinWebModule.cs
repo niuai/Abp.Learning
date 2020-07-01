@@ -18,7 +18,7 @@ namespace Jiabin.Web
     [DependsOn(
         typeof(JiabinHttpApiModule),
         typeof(JiabinApplicationModule),
-        typeof(JiabinEntityFrameworkCoreDbMigrationsModule),
+        typeof(JiabinEntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcModule)
         )]
