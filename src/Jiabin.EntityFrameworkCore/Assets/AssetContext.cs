@@ -14,6 +14,18 @@ namespace Jiabin.Assets
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            //builder.Entity<Asset>(b =>
+            //{
+            //    b.ToTable(JiabinConsts.DbTablePrefix + "Assets", JiabinConsts.DbSchema);
+            //    b.Ignore(p => p.ExtraProperties);
+            //});
+
+            //builder.Entity<AssetRecord>(b =>
+            //{
+            //    b.ToTable(JiabinConsts.DbTablePrefix + "AssetRecords", JiabinConsts.DbSchema);
+            //    b.Ignore(p => p.ExtraProperties);
+            //});
         }
     }
 }
