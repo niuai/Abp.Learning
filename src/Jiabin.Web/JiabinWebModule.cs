@@ -1,4 +1,6 @@
+using Jiabin.Asset;
 using Jiabin.EntityFrameworkCore;
+using Jiabin.Order;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,7 +24,8 @@ namespace Jiabin.Web
         typeof(JiabinHttpApiModule),
         typeof(JiabinApplicationModule),
         typeof(JiabinApplicationOrderModule),
-        typeof(JiabinEntityFrameworkCoreModule),
+        typeof(JiabinEntityFrameworkAssetAssetModule),
+        typeof(JiabinEntityFrameworkCoreOrderModule),
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcModule)
         )]

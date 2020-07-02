@@ -19,7 +19,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jiabin.Application.Contract
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jiabin.HttpApi", "src\Jiabin.HttpApi\Jiabin.HttpApi.csproj", "{4164BDF7-F527-4E85-9CE6-E3C2D7426A27}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jiabin.Application.Order", "src\Jiabin.Application.Order\Jiabin.Application.Order.csproj", "{5E8E9D6D-8A4E-44FE-8697-41BCC418B454}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jiabin.Application.Order", "src\Jiabin.Application.Order\Jiabin.Application.Order.csproj", "{5E8E9D6D-8A4E-44FE-8697-41BCC418B454}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jiabin.EntityFrameworkCore.Asset", "src\Jiabin.EntityFrameworkCore.Asset\Jiabin.EntityFrameworkCore.Asset.csproj", "{6E0E6DB5-C9A4-43AD-9927-4C69D8C6DB25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jiabin.EntityFrameworkCore.Order", "src\Jiabin.EntityFrameworkCore.Order\Jiabin.EntityFrameworkCore.Order.csproj", "{C1B84301-A8EE-41A7-A6A2-9DC94712D674}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +63,14 @@ Global
 		{5E8E9D6D-8A4E-44FE-8697-41BCC418B454}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5E8E9D6D-8A4E-44FE-8697-41BCC418B454}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5E8E9D6D-8A4E-44FE-8697-41BCC418B454}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0E6DB5-C9A4-43AD-9927-4C69D8C6DB25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0E6DB5-C9A4-43AD-9927-4C69D8C6DB25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0E6DB5-C9A4-43AD-9927-4C69D8C6DB25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0E6DB5-C9A4-43AD-9927-4C69D8C6DB25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1B84301-A8EE-41A7-A6A2-9DC94712D674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1B84301-A8EE-41A7-A6A2-9DC94712D674}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1B84301-A8EE-41A7-A6A2-9DC94712D674}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1B84301-A8EE-41A7-A6A2-9DC94712D674}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,6 +84,8 @@ Global
 		{520659C8-C734-4298-A3DA-B539DB9DFC0B} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{4164BDF7-F527-4E85-9CE6-E3C2D7426A27} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 		{5E8E9D6D-8A4E-44FE-8697-41BCC418B454} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{6E0E6DB5-C9A4-43AD-9927-4C69D8C6DB25} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
+		{C1B84301-A8EE-41A7-A6A2-9DC94712D674} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28315BFD-90E7-4E14-A2EA-F3D23AF4126F}

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Jiabin.Migrations
+namespace Jiabin.EntityFrameworkCore.Asset.Migrations
 {
     public partial class Init : Migration
     {

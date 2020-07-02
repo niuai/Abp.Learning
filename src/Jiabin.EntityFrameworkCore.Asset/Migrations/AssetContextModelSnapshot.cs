@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Jiabin.Migrations
+namespace Jiabin.EntityFrameworkCore.Asset.Migrations
 {
     [DbContext(typeof(AssetContext))]
     partial class AssetContextModelSnapshot : ModelSnapshot

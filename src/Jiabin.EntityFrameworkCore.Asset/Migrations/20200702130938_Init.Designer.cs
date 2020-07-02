@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Jiabin.Migrations
+namespace Jiabin.EntityFrameworkCore.Asset.Migrations
 {
     [DbContext(typeof(AssetContext))]
-    [Migration("20200702124308_Init")]
+    [Migration("20200702130938_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
