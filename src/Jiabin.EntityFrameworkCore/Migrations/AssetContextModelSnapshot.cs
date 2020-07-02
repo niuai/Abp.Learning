@@ -4,7 +4,6 @@ using Jiabin.Assets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Volo.Abp.EntityFrameworkCore;
 
 namespace Jiabin.Migrations
 {
@@ -15,7 +14,6 @@ namespace Jiabin.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.MySql)
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
@@ -44,8 +42,8 @@ namespace Jiabin.Migrations
                         .HasColumnName("ExtraProperties")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
-                    b.Property<string>("FileBytes")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+                    b.Property<bool>("FileBytesHandled")
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnName("LastModificationTime")

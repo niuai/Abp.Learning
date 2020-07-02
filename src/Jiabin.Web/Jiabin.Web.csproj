@@ -44,6 +44,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Jiabin.Application.Order\Jiabin.Application.Order.csproj" />
     <ProjectReference Include="..\Jiabin.Application\Jiabin.Application.csproj" />
     <ProjectReference Include="..\Jiabin.EntityFrameworkCore\Jiabin.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\Jiabin.HttpApi\Jiabin.HttpApi.csproj" />

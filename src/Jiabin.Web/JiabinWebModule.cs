@@ -21,6 +21,7 @@ namespace Jiabin.Web
     [DependsOn(
         typeof(JiabinHttpApiModule),
         typeof(JiabinApplicationModule),
+        typeof(JiabinApplicationOrderModule),
         typeof(JiabinEntityFrameworkCoreModule),
         typeof(AbpAutofacModule),
         typeof(AbpAspNetCoreMvcModule)
@@ -72,6 +73,7 @@ namespace Jiabin.Web
             Configure<AbpAspNetCoreMvcOptions>(options =>
             {
                 options.ConventionalControllers.Create(typeof(JiabinApplicationModule).Assembly);
+                options.ConventionalControllers.Create(typeof(JiabinApplicationOrderModule).Assembly);
             });
         }
 

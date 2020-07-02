@@ -39,7 +39,7 @@ namespace Jiabin.Migrations
                     LastModifierId = table.Column<Guid>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    FileBytes = table.Column<string>(nullable: true)
+                    FileBytesHandled = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {

@@ -10,9 +10,9 @@ namespace Jiabin.Assets
 
         public virtual string Description { get; set; }
 
+        [NotMapped]
         public string FileBytes { get; set; }
 
-        [NotMapped]
-        public string TempFileBytes { get; set; }
+        public bool FileBytesHandled { get; set; } = false;
     }
 }

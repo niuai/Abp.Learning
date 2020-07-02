@@ -4,7 +4,6 @@ using Jiabin.Orders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Volo.Abp.EntityFrameworkCore;
 
 namespace Jiabin.Migrations.Order
 {
@@ -15,7 +14,6 @@ namespace Jiabin.Migrations.Order
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("_Abp_DatabaseProvider", EfCoreDatabaseProvider.MySql)
                 .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 

@@ -22,8 +22,7 @@ namespace Jiabin.Assets
         {
             var entity = eventData.Entity;
 
-            entity.TempFileBytes = entity.FileBytes;
-            entity.FileBytes = null;
+            entity.FileBytesHandled = !entity.FileBytesHandled;
 
             await Task.CompletedTask;
         }
@@ -32,7 +31,11 @@ namespace Jiabin.Assets
         {
             var entity = eventData.Entity;
 
-            entity.FileBytes = null;
+            if (!string.IsNullOrEmpty(entity.FileBytes))
+            {
+                entity.FileBytesHandled = !entity.FileBytesHandled;
+                entity.FileBytes = null;
+            }
 
             await Task.CompletedTask;
         }
