@@ -251,10 +251,10 @@ paket-files/
 .idea/
 *.sln.iml
 
-# Jiabin
-src/Jiabin.Web/Logs/*
-src/Jiabin.Web.Host/Logs/*
-src/Jiabin.IdentityServer/Logs/*
-src/Jiabin.HttpApi.Host/Logs/*
-src/Jiabin.HttpApi.HostWithIds/Logs/*
-src/Jiabin.DbMigrator/Logs/*
+# Lycoris
+src/Lycoris.Web/Logs/*
+src/Lycoris.Web.Host/Logs/*
+src/Lycoris.IdentityServer/Logs/*
+src/Lycoris.HttpApi.Host/Logs/*
+src/Lycoris.HttpApi.HostWithIds/Logs/*
+src/Lycoris.DbMigrator/Logs/*
