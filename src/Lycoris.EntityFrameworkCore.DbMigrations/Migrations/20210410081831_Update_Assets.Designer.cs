@@ -3,15 +3,17 @@ using System;
 using Lycoris.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Volo.Abp.EntityFrameworkCore;
 
 namespace Lycoris.Migrations
 {
     [DbContext(typeof(LycorisMigrationsDbContext))]
-    partial class LycorisMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210410081831_Update_Assets")]
+    partial class Update_Assets
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

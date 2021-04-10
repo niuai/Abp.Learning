@@ -10,6 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Lycoris.Domain\Lycoris.Domain.csproj" />
     <ProjectReference Include="..\Lycoris.Application.Contracts\Lycoris.Application.Contracts.csproj" />
+    <ProjectReference Include="..\Lycoris.EntityFrameworkCore\Lycoris.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
   <ItemGroup>

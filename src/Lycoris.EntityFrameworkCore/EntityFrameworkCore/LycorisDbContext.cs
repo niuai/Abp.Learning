@@ -5,6 +5,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
+using Lycoris.Assets;
 
 namespace Lycoris.EntityFrameworkCore
 {
@@ -25,6 +26,8 @@ namespace Lycoris.EntityFrameworkCore
         /* Add DbSet properties for your Aggregate Roots / Entities here.
          * Also map them inside LycorisDbContextModelCreatingExtensions.ConfigureLycoris
          */
+
+        public DbSet<Asset> Assets { get; set; }
 
         public LycorisDbContext(DbContextOptions<LycorisDbContext> options)
             : base(options)

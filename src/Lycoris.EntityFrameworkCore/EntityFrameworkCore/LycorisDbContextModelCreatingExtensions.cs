@@ -1,5 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Lycoris.Assets;
+using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 
 namespace Lycoris.EntityFrameworkCore
 {
@@ -11,12 +13,11 @@ namespace Lycoris.EntityFrameworkCore
 
             /* Configure your own tables/entities inside here */
 
-            //builder.Entity<YourEntity>(b =>
-            //{
-            //    b.ToTable(LycorisConsts.DbTablePrefix + "YourEntities", LycorisConsts.DbSchema);
-            //    b.ConfigureByConvention(); //auto configure for the base class props
-            //    //...
-            //});
+            builder.Entity<Asset>(b =>
+            {
+                b.ToTable(LycorisConsts.DbTablePrefix + "Assets", LycorisConsts.DbSchema);
+                b.ConfigureFullAuditedAggregateRoot();
+            });
         }
     }
 }
