@@ -9,6 +9,15 @@ namespace Lycoris.Assets
 
         public string Description { get; set; }
 
-        public string AttachUrl { get; set; }
+        private string _attachUrl;
+
+        public string AttachUrl
+        {
+            get => _attachUrl;
+            set
+            {
+                _attachUrl = value;
+            }
+        }
     }
 }

@@ -6,6 +6,12 @@ using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.Identity;
 using Volo.Abp.Users.EntityFrameworkCore;
 using Lycoris.Assets;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using System;
+using System.Threading.Tasks;
+using System.Threading;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.Update;
 
 namespace Lycoris.EntityFrameworkCore
 {

@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Domain.Repositories;
+using Volo.Abp.Uow;
 
 namespace Lycoris.Assets
 {
@@ -30,15 +33,30 @@ namespace Lycoris.Assets
 
         public async Task<IEnumerable<Asset>> Get()
         {
-            return await _assetRepo.ToListAsync();
+            var assets = await _assetRepo.ToListAsync();
+
+            return assets;
         }
 
+        [UnitOfWork]
         public async Task<Asset> Update()
         {
             var asset = await _assetRepo.FirstOrDefaultAsync();
             var dbContext = await _assetRepo.GetDbContextAsync();
 
             asset.AttachUrl = $"attach-{DateTime.Now.Ticks}";
+
+            foreach (var entry in dbContext.Entry(asset).Properties)
+            {
+                Console.WriteLine(
+                    $"Property '{entry.Metadata.Name}'" +
+                    $" is {(entry.IsModified ? "modified" : "not modified")} " +
+                    $"Current value: '{entry.CurrentValue}' " +
+                    $"Original value: '{entry.OriginalValue}'");
+            }
+
+            var changeInfo = dbContext.ChangeTracker.Entries()
+                .Where(t => t.State == EntityState.Modified).ToList();
 
             foreach (var entry in dbContext.Entry(asset).Properties)
             {
